@@ -1,0 +1,1 @@
+# NewPlatform.Flexberry.UserSettingsService
