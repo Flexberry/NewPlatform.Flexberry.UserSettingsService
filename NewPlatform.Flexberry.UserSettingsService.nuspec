@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>NewPlatform.Flexberry.UserSettingsService</id>
+    <id>NewPlatform.Flexberry.UserSettingsService-Debug</id>
     <version>3.0.0</version>
     <title>Flexberry UserSettingsService</title>
     <authors>New Platform Ltd.</authors>
@@ -19,7 +19,7 @@
     <tags>Flexberry Settings</tags>
     <dependencies>
       <group targetFramework=".NETFramework4.5">
-        <dependency id="NewPlatform.Flexberry.ORM" version="5.0.0" />
+        <dependency id="NewPlatform.Flexberry.ORM-Debug" version="5.0.0" />
         <dependency id="NewPlatform.Flexberry.LogService" version="1.1.0" />
       </group>
     </dependencies>
