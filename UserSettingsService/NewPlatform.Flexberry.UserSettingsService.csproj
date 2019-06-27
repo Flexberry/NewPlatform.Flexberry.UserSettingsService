@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NewPlatform.Flexberry.CurrentUserService.Core\NewPlatform.Flexberry.CurrentUserService.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ICSSoft.STORMNET.Business">
+      <HintPath>..\..\..\KSA_E5MES\development\dependencies\FlexberryORM_CORE2\ICSSoft.STORMNET.Business.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSSoft.STORMNET.Business.SQLDataService">
+      <HintPath>..\..\..\KSA_E5MES\development\dependencies\FlexberryORM_CORE2\ICSSoft.STORMNET.Business.SQLDataService.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSSoft.STORMNET.DataObject">
+      <HintPath>..\..\..\KSA_E5MES\development\dependencies\FlexberryORM_CORE2\ICSSoft.STORMNET.DataObject.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSSoft.STORMNET.FunctionalLanguage">
+      <HintPath>..\..\..\KSA_E5MES\development\dependencies\FlexberryORM_CORE2\ICSSoft.STORMNET.FunctionalLanguage.dll</HintPath>
+    </Reference>
+    <Reference Include="LogService">
+      <HintPath>..\..\NewPlatform.Flexberry.LogService-feature-dotnetcore2\LogService\bin\Debug\netcoreapp2.0\LogService.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

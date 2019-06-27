@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.DirectoryServices;
+    //using System.DirectoryServices;
     using System.Linq;
 
     using ICSSoft.STORMNET;
@@ -107,11 +107,11 @@
         {
             get
             {
-                if (_useSettings != null)
-                    return _useSettings.Value;
+                //if (_useSettings != null)
+                //    return _useSettings.Value;
 
-                string configurationValue = System.Configuration.ConfigurationManager.AppSettings["UseSettings"];
-                _useSettings = configurationValue.ToLower() == "true";
+                //string configurationValue = System.Configuration.ConfigurationManager.AppSettings["UseSettings"];
+                //_useSettings = configurationValue.ToLower() == "true";
 
                 return _useSettings.Value;
             }
@@ -132,9 +132,9 @@
                 if (_appName != null)
                     return _appName;
 
-                _appName = System.Configuration.ConfigurationManager.AppSettings["applicationName"];
-                if (string.IsNullOrEmpty(_appName))
-                    _appName = System.IO.Path.GetFileNameWithoutExtension(System.Windows.Forms.Application.ExecutablePath);
+                //_appName = System.Configuration.ConfigurationManager.AppSettings["applicationName"];
+                //if (string.IsNullOrEmpty(_appName))
+                //    _appName = System.IO.Path.GetFileNameWithoutExtension(System.Windows.Forms.Application.ExecutablePath);
 
                 return _appName;
             }
@@ -181,27 +181,27 @@
         /// <returns>Name of user from AD or <c>null</c>, if it's not found.</returns>
         public string GetADUserName(string userName)
         {
-            if (string.IsNullOrEmpty(userName))
-                return null;
+            //if (string.IsNullOrEmpty(userName))
+            //    return null;
 
             string retUserName = null;
-            try
-            {
-                var ds = new DirectorySearcher("(&(objectClass=user)(sAMAccountName= " + userName + "))", new[] { "cn" })
-                {
-                    CacheResults = true
-                };
+            //try
+            //{
+            //    var ds = new DirectorySearcher("(&(objectClass=user)(sAMAccountName= " + userName + "))", new[] { "cn" })
+            //    {
+            //        CacheResults = true
+            //    };
 
-                SearchResult sr = ds.FindOne();
-                if (sr != null && sr.Properties != null && sr.Properties["cn"] != null && sr.Properties["cn"].Count > 0)
-                {
-                    retUserName = sr.Properties["cn"][0].ToString();
-                }
-            }
-            catch (Exception e)
-            {
-                LogService.LogError("Exception in loading AD user name.", e);
-            }
+            //    SearchResult sr = ds.FindOne();
+            //    if (sr != null && sr.Properties != null && sr.Properties["cn"] != null && sr.Properties["cn"].Count > 0)
+            //    {
+            //        retUserName = sr.Properties["cn"][0].ToString();
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    LogService.LogError("Exception in loading AD user name.", e);
+            //}
             
             return retUserName;
         }

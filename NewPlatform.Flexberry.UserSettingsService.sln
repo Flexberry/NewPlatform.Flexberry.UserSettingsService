@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserSettingsService", "UserSettingsService\UserSettingsService.csproj", "{4C257603-3373-46ED-BC36-075F8C2AFB1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserSettingsService", "UserSettingsService\NewPlatform.Flexberry.UserSettingsService.csproj", "{4C257603-3373-46ED-BC36-075F8C2AFB1A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet Package Properties", "NuGet Package Properties", "{75F93581-D0A2-4C97-8651-F2E207B88214}"
 	ProjectSection(SolutionItems) = preProject
