@@ -36,6 +36,11 @@ namespace NewPlatform.Flexberry
             "Module",
             "Name",
             "Value"})]
+    [View("FlexberryAdvLimitL", new string[] {
+            "User",
+            "Published",
+            "Module",
+            "Name"})]
     public class FlexberryAdvLimit : ICSSoft.STORMNET.DataObject
     {
 
@@ -187,7 +192,6 @@ namespace NewPlatform.Flexberry
         // *** Start programmer edit section *** (FlexberryAdvLimit.Value CustomAttributes)
 
         // *** End programmer edit section *** (FlexberryAdvLimit.Value CustomAttributes)
-        [StrLen(256)]
         public virtual string Value
         {
             get
@@ -227,6 +231,17 @@ namespace NewPlatform.Flexberry
                 get
                 {
                     return ICSSoft.STORMNET.Information.GetView("FlexberryAdvLimitE", typeof(NewPlatform.Flexberry.FlexberryAdvLimit));
+                }
+            }
+
+            /// <summary>
+            /// "FlexberryAdvLimitL" view.
+            /// </summary>
+            public static ICSSoft.STORMNET.View FlexberryAdvLimitL
+            {
+                get
+                {
+                    return ICSSoft.STORMNET.Information.GetView("FlexberryAdvLimitL", typeof(NewPlatform.Flexberry.FlexberryAdvLimit));
                 }
             }
         }
