@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>NewPlatform.Flexberry.UserSettingsService</id>
-    <version>3.1.0-beta01</version>
+    <version>4.0.0-alpha01</version>
     <title>Flexberry UserSettingsService</title>
     <authors>New Platform Ltd.</authors>
     <owners>New Platform Ltd.</owners>
@@ -12,19 +12,17 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Flexberry UserSettingsService package.</description>
     <releaseNotes>
-      1) Add FlexberryAdvLimit class.
+      Added
+      - .NET Standard 2.0 implementation
     </releaseNotes>
     <copyright>Copyright New Platform Ltd. 2019</copyright>
     <tags>Flexberry Settings</tags>
     <dependencies>
-      <group targetFramework=".NETFramework4.5">
-        <dependency id="NewPlatform.Flexberry.ORM" version="5.0.0" />
-        <dependency id="NewPlatform.Flexberry.LogService" version="1.1.0" />
-      </group>
+        <dependency id="NewPlatform.Flexberry.ORM" version="6.0.0-alpha04" />
     </dependencies>
   </metadata>
   <files>
-    <file src="UserSettingsService.dll" target="lib\net45\UserSettingsService.dll" />
-    <file src="UserSettingsService.XML" target="lib\net45\UserSettingsService.XML" />
+    <file src="NewPlatform.Flexberry.UserSettingsService.dll" target="lib\netstandard2.0\NewPlatform.Flexberry.UserSettingsService.dll" />
+    <file src="NewPlatform.Flexberry.UserSettingsService.XML" target="lib\netstandard2.0\NewPlatform.Flexberry.UserSettingsService.XML" />
   </files>
 </package>

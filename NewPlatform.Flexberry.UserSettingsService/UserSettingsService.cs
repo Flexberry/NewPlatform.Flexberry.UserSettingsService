@@ -134,8 +134,9 @@
 
                 _appName = System.Configuration.ConfigurationManager.AppSettings["applicationName"];
                 if (string.IsNullOrEmpty(_appName))
-                    _appName = System.IO.Path.GetFileNameWithoutExtension(System.Windows.Forms.Application.ExecutablePath);
-
+                {
+                    _appName = "Flexberry App";
+                }
                 return _appName;
             }
         }

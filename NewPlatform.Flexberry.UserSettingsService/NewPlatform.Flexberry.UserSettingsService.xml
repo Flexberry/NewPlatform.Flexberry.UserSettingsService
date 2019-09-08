@@ -1,0 +1,2351 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NewPlatform.Flexberry.UserSettingsService</name>
+    </assembly>
+    <members>
+        <member name="T:NewPlatform.Flexberry.FlexberryAdvLimit">
+            <summary>
+            FlexberryAdvLimit.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.FlexberryAdvLimit.User">
+            <summary>
+            User.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.FlexberryAdvLimit.Published">
+            <summary>
+            Published.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.FlexberryAdvLimit.Module">
+            <summary>
+            Module.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.FlexberryAdvLimit.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.FlexberryAdvLimit.Value">
+            <summary>
+            Value.
+            </summary>
+        </member>
+        <member name="T:NewPlatform.Flexberry.FlexberryAdvLimit.Views">
+            <summary>
+            Class views container.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.FlexberryAdvLimit.Views.FlexberryAdvLimitE">
+            <summary>
+            "FlexberryAdvLimitE" view.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.FlexberryAdvLimit.Views.FlexberryAdvLimitL">
+            <summary>
+            "FlexberryAdvLimitL" view.
+            </summary>
+        </member>
+        <member name="T:NewPlatform.Flexberry.FlexberryUserSetting">
+            <summary>
+            Класс для удобной работы с настройками пользователя в клиентском коде.
+            </summary>
+        </member>
+        <member name="T:NewPlatform.Flexberry.FlexberryUserSetting.Views">
+            <summary>
+            Class views container.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.FlexberryUserSetting.Views.FlexberryUserSettingE">
+            <summary>
+            "FlexberryUserSettingE" view.
+            </summary>
+        </member>
+        <member name="T:NewPlatform.Flexberry.ORM.ODataService.UserSettingsService.FlexberryUserSettingBS">
+            <summary>
+            Бизнес-сервер для класса <see cref="T:NewPlatform.Flexberry.FlexberryUserSetting"/>.
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.ORM.ODataService.UserSettingsService.FlexberryUserSettingBS.OnUpdateFlexberryUserSetting(NewPlatform.Flexberry.FlexberryUserSetting)">
+            <summary>
+            Обработка изменения класса <see cref="T:NewPlatform.Flexberry.FlexberryUserSetting"/>.
+            В создаваемую запись записывается текущий пользователь.
+            В редактируемой записи проверяется, что пользователь также соответствует текущему, в противном случае кидается исключение.
+            </summary>
+            <param name="updatedObject">Изменяемый объект.</param>
+            <returns>Дополнительные объекты, которые требуется сохранить.</returns>
+            <exception cref="T:System.Exception">Исключение кидается, если у редактируемой записи пользователь не соответствует текущему.</exception>
+        </member>
+        <member name="T:ICSSoft.Services.IUserSettingsService">
+            <summary>
+            Interface of service for working with settings in application.
+            </summary>
+            <remarks>
+            <para>All settings are loaded only for current application (<see cref="P:ICSSoft.Services.IUserSettingsService.AppName"/>).</para>
+            <para>http://wiki.ics.perm.ru/UserSettingsService.ashx</para>
+            </remarks>
+        </member>
+        <member name="P:ICSSoft.Services.IUserSettingsService.UseSettings">
+            <summary>
+            Flag of enabled service.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.Services.IUserSettingsService.AppName">
+            <summary>
+            Name of application for loading data.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.Services.IUserSettingsService.CommonModuleName">
+            <summary>
+            Name of module that is used for common settings.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.Services.IUserSettingsService.CommonUserName">
+            <summary>
+            Name of user that is used for common settings.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.Services.IUserSettingsService.CommonModuleGuid">
+            <summary>
+            Identifier of module that is used for common settings.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.Services.IUserSettingsService.CommonUserGuid">
+            <summary>
+            Identifier of user that is used for common settings.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetADUserName(System.String)">
+            <summary>
+            Get the name of user from AD.
+            </summary>
+            <param name="userName">Name of user for search in AD.</param>
+            <returns>Name of user from AD or <c>null</c>, if it's not found.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetEnvOrADUserName">
+            <summary>
+            Get the name of current user (using <see cref="P:System.Environment.UserName"/>) from AD.
+            </summary>
+            <returns>Name of current user from AD or <see cref="P:System.Environment.UserName"/>, if it's not found.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetSettings(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String@,System.String@,System.Nullable{System.Int32}@,System.Nullable{System.Boolean}@,System.Nullable{System.Guid}@,System.Nullable{System.Decimal}@,System.Nullable{System.DateTime}@)">
+            <summary>
+            Load setting values by names and identifiers of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: (user name OR identifier) AND (module name OR identifier) AND (setting name OR identifier).</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Returns <c>true</c> if data successfully loaded and <c>flase</c> if loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetSettings(System.String,System.String,System.String,System.String@,System.String@,System.Nullable{System.Int32}@,System.Nullable{System.Boolean}@,System.Nullable{System.Guid}@,System.Nullable{System.Decimal}@,System.Nullable{System.DateTime}@)">
+            <summary>
+            Load setting values by names of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: user name AND module name AND setting name.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Returns <c>true</c> if data successfully loaded and <c>flase</c> if loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetSettings(System.Guid,System.Guid,System.Guid,System.String@,System.String@,System.Nullable{System.Int32}@,System.Nullable{System.Boolean}@,System.Nullable{System.Guid}@,System.Nullable{System.Decimal}@,System.Nullable{System.DateTime}@)">
+            <summary>
+            Load setting values by identifiers of user and module.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: user identifier AND module identifier AND setting identifier.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Returns <c>true</c> if data successfully loaded and <c>flase</c> if loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetCommonSettings(System.String,System.String@,System.String@,System.Nullable{System.Int32}@,System.Nullable{System.Boolean}@,System.Nullable{System.Guid}@,System.Nullable{System.Decimal}@,System.Nullable{System.DateTime}@)">
+            <summary>
+            Load common setting values by name.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+            <returns>Returns <c>true</c> if data successfully loaded and <c>flase</c> if loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetCommonSettings(System.Guid,System.String@,System.String@,System.Nullable{System.Int32}@,System.Nullable{System.Boolean}@,System.Nullable{System.Guid}@,System.Nullable{System.Decimal}@,System.Nullable{System.DateTime}@)">
+            <summary>
+            Load common setting values by identifier.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+            <returns>Returns <c>true</c> if data successfully loaded and <c>flase</c> if loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetAllSettingsByUser(System.String,System.Nullable{System.Guid})">
+            <summary>
+            Get all settings by user name or identifier.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>Loading logic: user name OR identifier.</remarks>
+            <returns>List of user settings.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetAllSettingsByUser(System.String)">
+            <summary>
+            Get all settings by user name.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <returns>List of user settings.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetAllSettingsByUser(System.Guid)">
+            <summary>
+            Get all settings by user identifier.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <returns>List of user settings.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetAllSettingsByModule(System.String,System.Nullable{System.Guid})">
+            <summary>
+            Get all settings by module name or identifier.
+            </summary>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>Loading logic: module name OR identifier.</remarks>
+            <returns>List of module settings.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetAllSettingsByModule(System.String)">
+            <summary>
+            Get all settings by module name.
+            </summary>
+            <param name="moduleName">Name of the module.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <returns>List of module settings.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetAllSettingsByModule(System.Guid)">
+            <summary>
+            Get all settings by module identifier.
+            </summary>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <returns>List of module settings.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetAllSettingsNames(System.String,System.String)">
+            <summary>
+            Get all names of settings by module name and identifier.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>Loading logic: user name AND module name.</remarks>
+            <returns>List of all names of settings.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetAllCommonSettings">
+            <summary>
+            Get all common settings.
+            </summary>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <returns>List of all common settings.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetStrSetting(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Get value of <see cref="T:System.String" />-type setting by names and identifiers of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: (user name OR identifier) AND (module name OR identifier) AND (setting name OR identifier).</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetStrSetting(System.String,System.String,System.String)">
+            <summary>
+            Get value of <see cref="T:System.String" />-type setting by names of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: user name AND module name AND setting name.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetStrSetting(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Get value of <see cref="T:System.String" />-type setting.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: user identifier AND identifier name AND setting identifier.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetCommonStrSetting(System.String)">
+            <summary>
+            Get value of common <see cref="T:System.String" />-type setting by name.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetCommonStrSetting(System.Guid)">
+            <summary>
+            Get value of common <see cref="T:System.String" />-type setting by identifier.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetTxtSetting(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Get value of <see cref="T:System.Int32" />-type setting by names and identifiers of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: (user name OR identifier) AND (module name OR identifier) AND (setting name OR identifier).</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetTxtSetting(System.String,System.String,System.String)">
+            <summary>
+            Get value of <see cref="T:System.Int32" />-type setting by names of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: user name AND module name AND setting name.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetTxtSetting(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Get value of <see cref="T:System.Int32" />-type setting.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetCommonTxtSetting(System.String)">
+            <summary>
+            Get value of common <see cref="T:System.Int32" />-type setting by name.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: user identifier AND identifier name AND setting identifier.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetCommonTxtSetting(System.Guid)">
+            <summary>
+            Get value of common <see cref="T:System.Int32" />-type setting by identifier.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetIntSetting(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Get value of <see cref="T:System.Int32" />-type setting by names and identifiers of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: (user name OR identifier) AND (module name OR identifier) AND (setting name OR identifier).</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetIntSetting(System.String,System.String,System.String)">
+            <summary>
+            Get value of <see cref="T:System.Int32" />-type setting by names of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: user name AND module name AND setting name.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetIntSetting(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Get value of <see cref="T:System.Int32" />-type setting by identifiers of user and module.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: user identifier AND identifier name AND setting identifier.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetCommonIntSetting(System.String)">
+            <summary>
+            Get value of common <see cref="T:System.Int32" />-type setting by name.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetCommonIntSetting(System.Guid)">
+            <summary>
+            Get value of common <see cref="T:System.Int32" />-type setting by identifier.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetBoolSetting(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Get value of <see cref="T:System.Boolean" />-type setting by names and identifiers of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: (user name OR identifier) AND (module name OR identifier) AND (setting name OR identifier).</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetBoolSetting(System.String,System.String,System.String)">
+            <summary>
+            Get value of <see cref="T:System.Boolean" />-type setting by names of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: user name AND module name AND setting name.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetBoolSetting(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Get value of <see cref="T:System.Boolean" />-type setting by identifiers of user and module.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: user identifier AND identifier name AND setting identifier.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetCommonBoolSetting(System.String)">
+            <summary>
+            Get value of common <see cref="T:System.Boolean" />-type setting by name.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetCommonBoolSetting(System.Guid)">
+            <summary>
+            Get value of common <see cref="T:System.Boolean" />-type setting by identifier.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetGuidSetting(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Get value of <see cref="T:System.String" />-type setting by names and identifiers of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: (user name OR identifier) AND (module name OR identifier) AND (setting name OR identifier).</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetGuidSetting(System.String,System.String,System.String)">
+            <summary>
+            Get value of <see cref="T:System.String" />-type setting by names of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: user name AND module name AND setting name.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetGuidSetting(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Get value of <see cref="T:System.String" />-type setting by identifiers of user and module.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: user identifier AND identifier name AND setting identifier.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetCommonGuidSetting(System.String)">
+            <summary>
+            Get value of common <see cref="T:System.String" />-type setting by name.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetCommonGuidSetting(System.Guid)">
+            <summary>
+            Get value of common <see cref="T:System.String" />-type setting by identifier.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetDecimalSetting(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Get value of <see cref="T:System.Decimal" />-type setting by names and identifiers of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: (user name OR identifier) AND (module name OR identifier) AND (setting name OR identifier).</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetDecimalSetting(System.String,System.String,System.String)">
+            <summary>
+            Get value of <see cref="T:System.Decimal" />-type setting by names of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: user name AND module name AND setting name.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetDecimalSetting(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Get value of <see cref="T:System.Decimal" />-type setting by identifiers of user and module.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: user identifier AND identifier name AND setting identifier.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetCommonDecimalSetting(System.String)">
+            <summary>
+            Get value of common <see cref="T:System.Decimal" />-type setting by name.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetCommonDecimalSetting(System.Guid)">
+            <summary>
+            Get value of common <see cref="T:System.Decimal" />-type setting by identifier.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetDateTimeSetting(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Get value of <see cref="T:System.DateTime" />-type setting by names and identifiers of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: (user name OR identifier) AND (module name OR identifier) AND (setting name OR identifier).</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetDateTimeSetting(System.String,System.String,System.String)">
+            <summary>
+            Get value of <see cref="T:System.DateTime" />-type setting by names of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: user name AND module name AND setting name.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetDateTimeSetting(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Get value of <see cref="T:System.DateTime" />-type setting by identifiers of user and module.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: user identifier AND identifier name AND setting identifier.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetCommonDateTimeSetting(System.String)">
+            <summary>
+            Get value of common <see cref="T:System.DateTime" />-type setting by name.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.GetCommonDateTimeSetting(System.Guid)">
+            <summary>
+            Get value of common <see cref="T:System.DateTime" />-type setting by identifier.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.IUserSettingsService.UseSettings"/> is <c>false</c>).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetSettings(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Guid},System.Nullable{System.Decimal},System.Nullable{System.DateTime})">
+            <summary>
+            Set setting value using identifiers and names.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetSettings(System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Guid},System.Nullable{System.Decimal},System.Nullable{System.DateTime})">
+            <summary>
+            Set setting value using names.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetSettings(System.Guid,System.Guid,System.Guid,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Guid},System.Nullable{System.Decimal},System.Nullable{System.DateTime})">
+            <summary>
+            Set setting value using identifiers.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetStrSetting(System.String,System.String,System.String,System.String)">
+            <summary>
+            Set <see cref="T:System.String" />-type setting.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetStrSetting(System.Guid,System.Guid,System.Guid,System.String)">
+            <summary>
+            Set <see cref="T:System.String" />-type setting.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetCommonStrSetting(System.String,System.String)">
+            <summary>
+            Set common <see cref="T:System.String" />-type setting.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetCommonStrSetting(System.Guid,System.String)">
+            <summary>
+            Set common <see cref="T:System.String" />-type setting.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetTxtSetting(System.String,System.String,System.String,System.String)">
+            <summary>
+            Set <see cref="T:System.String" />-type setting with unbounded length.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetTxtSetting(System.Guid,System.Guid,System.Guid,System.String)">
+            <summary>
+            Set <see cref="T:System.String" />-type setting with unbounded length.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetCommonTxtSetting(System.String,System.String)">
+            <summary>
+            Set common <see cref="T:System.String" />-type setting with unbounded length.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetCommonTxtSetting(System.Guid,System.String)">
+            <summary>
+            Set common <see cref="T:System.String" />-type setting with unbounded length.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetIntSetting(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Set <see cref="T:System.Int32" />-type setting.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetIntSetting(System.Guid,System.Guid,System.Guid,System.Int32)">
+            <summary>
+            Set <see cref="T:System.Int32" />-type setting.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetCommonIntSetting(System.String,System.Int32)">
+            <summary>
+            Set common <see cref="T:System.Int32" />-type setting.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetCommonIntSetting(System.Guid,System.Int32)">
+            <summary>
+            Set common <see cref="T:System.Int32" />-type setting.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetBoolSetting(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Set <see cref="T:System.Boolean" />-type setting.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetBoolSetting(System.Guid,System.Guid,System.Guid,System.Boolean)">
+            <summary>
+            Set <see cref="T:System.Boolean" />-type setting.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetCommonBoolSetting(System.String,System.Boolean)">
+            <summary>
+            Set common <see cref="T:System.Boolean" />-type setting.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetCommonBoolSetting(System.Guid,System.Boolean)">
+            <summary>
+            Set common <see cref="T:System.Boolean" />-type setting.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetGuidSetting(System.String,System.String,System.String,System.Guid)">
+            <summary>
+            Set <see cref="T:System.String" />-type setting.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetGuidSetting(System.Guid,System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Set <see cref="T:System.String" />-type setting.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetCommonGuidSetting(System.String,System.Guid)">
+            <summary>
+            Set common <see cref="T:System.String" />-type setting.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetCommonGuidSetting(System.Guid,System.Guid)">
+            <summary>
+            Set common <see cref="T:System.String" />-type setting.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetDecimalSetting(System.String,System.String,System.String,System.Decimal)">
+            <summary>
+            Set <see cref="T:System.Decimal" />-type setting.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetDecimalSetting(System.Guid,System.Guid,System.Guid,System.Decimal)">
+            <summary>
+            Set <see cref="T:System.Decimal" />-type setting.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetCommonDecimalSetting(System.String,System.Decimal)">
+            <summary>
+            Set common <see cref="T:System.Decimal" />-type setting.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetCommonDecimalSetting(System.Guid,System.Decimal)">
+            <summary>
+            Set common <see cref="T:System.Decimal" />-type setting.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetDateTimeSetting(System.String,System.String,System.String,System.DateTime)">
+            <summary>
+            Установить <see cref="T:System.DateTime" />-type setting.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetDateTimeSetting(System.Guid,System.Guid,System.Guid,System.DateTime)">
+            <summary>
+            Установить <see cref="T:System.DateTime" />-type setting.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetCommonDateTimeSetting(System.String,System.DateTime)">
+            <summary>
+            Set common <see cref="T:System.DateTime" />-type setting.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.SetCommonDateTimeSetting(System.Guid,System.DateTime)">
+            <summary>
+            Set common <see cref="T:System.DateTime" />-type setting.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be saved using specified arguments.</exception>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.DeleteSettingsByUser(System.String,System.Nullable{System.Guid})">
+            <summary>
+            Delete all settings by user name and identifier.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <remarks>Deletes data using user name OR identifier.</remarks>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.DeleteSettingsByUser(System.String)">
+            <summary>
+            Delete all settings by user name.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.DeleteSettingsByUser(System.Guid)">
+            <summary>
+            Delete all settings by user identifier.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.DeleteSettingsByModule(System.String,System.Nullable{System.Guid})">
+            <summary>
+            Delete all settings by module name or identifier.
+            </summary>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <remarks >Deletes data using module name OR identifier.</remarks>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.DeleteSettings(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Delete settings.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <remarks>Deletes all settings usin OR logic for non-null arguments.</remarks>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.DeleteSettings(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Delete all settings by module and setting name or identifier.
+            </summary>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.DeleteSettings(System.String,System.String,System.String)">
+            <summary>
+            Delete setting by names.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.DeleteSettings">
+            <summary>
+            Delete all settings.
+            </summary>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.DeleteSettings(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Delete setting by identifiers.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.DeleteAllCommonSettings">
+            <summary>
+            Delete all common settings.
+            </summary>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.DeleteCommonSettings(System.String)">
+            <summary>
+            Delete common setting by name.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.IUserSettingsService.DeleteCommonSettings(System.Guid)">
+            <summary>
+            Delete common setting by identifier.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="T:ICSSoft.Services.UserSettingsService">
+            <summary>
+            Implementation of <see cref="T:ICSSoft.Services.IUserSettingsService"/> using data service
+            for loading and saving settings.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.Services.UserSettingsService._sync">
+            <summary>
+            Object for syncronizing access to current service instance in <see cref="P:ICSSoft.Services.UserSettingsService.Current"/>.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.Services.UserSettingsService._current">
+            <summary>
+            Current instance of the service.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.Services.UserSettingsService._commonModuleGuid">
+            <summary>
+            Identifier of module for common settings.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.Services.UserSettingsService._commonUserGuid">
+            <summary>
+            Identifier of user for common settings.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.Services.UserSettingsService._useSettings">
+            <summary>
+            Flag of enabled settings.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.Services.UserSettingsService._appName">
+            <summary>
+            Name of the application.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.Services.UserSettingsService.Current">
+            <summary>
+            Current instcance of settings service.
+            </summary>
+            <remarks>
+            By default, without any configuration (for example, by Unity or other IoC containers) that is usually made
+            on start of the application, instance of <see cref="T:ICSSoft.Services.UserSettingsService"/> with data service from
+            <see cref="T:ICSSoft.STORMNET.Business.DataServiceProvider"/> will be created.
+            Thread safe.
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.#ctor">
+            <summary>
+            Default constructor.
+            Uses data service from <see cref="T:ICSSoft.STORMNET.Business.DataServiceProvider"/>.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.#ctor(ICSSoft.STORMNET.Business.IDataService)">
+            <summary>
+            Constructor with parameters.
+            Uses specified data service for loading and saving settings.
+            </summary>
+            <param name="dataService">Data service for working with settings.</param>
+        </member>
+        <member name="P:ICSSoft.Services.UserSettingsService.UseSettings">
+            <summary>
+            Flag of enabled service.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.Services.UserSettingsService.AppName">
+            <summary>
+            Name of application for loading data.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.Services.UserSettingsService.CommonModuleName">
+            <summary>
+            Name of module that is used for common settings.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.Services.UserSettingsService.CommonUserName">
+            <summary>
+            Name of user that is used for common settings.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.Services.UserSettingsService.CommonModuleGuid">
+            <summary>
+            Identifier of module that is used for common settings.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.Services.UserSettingsService.CommonUserGuid">
+            <summary>
+            Identifier of user that is used for common settings.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetADUserName(System.String)">
+            <summary>
+            Get the name of user from AD.
+            </summary>
+            <param name="userName">Name of user for search in AD.</param>
+            <returns>Name of user from AD or <c>null</c>, if it's not found.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetEnvOrADUserName">
+            <summary>
+            Get the name of current user (using <see cref="P:System.Environment.UserName" />) from AD.
+            </summary>
+            <returns>Name of current user from AD or <see cref="P:System.Environment.UserName" />, if it's not found.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetSettings(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String@,System.String@,System.Nullable{System.Int32}@,System.Nullable{System.Boolean}@,System.Nullable{System.Guid}@,System.Nullable{System.Decimal}@,System.Nullable{System.DateTime}@)">
+            <summary>
+            Load setting values by names and identifiers of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <returns>Returns <c>true</c> if data successfully loaded and <c>flase</c> if loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>
+            <para>Loading logic: (user name OR identifier) AND (module name OR identifier) AND (setting name OR identifier).</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetSettings(System.String,System.String,System.String,System.String@,System.String@,System.Nullable{System.Int32}@,System.Nullable{System.Boolean}@,System.Nullable{System.Guid}@,System.Nullable{System.Decimal}@,System.Nullable{System.DateTime}@)">
+            <summary>
+            Load setting values by names of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <returns>Returns <c>true</c> if data successfully loaded and <c>flase</c> if loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: user name AND module name AND setting name.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetSettings(System.Guid,System.Guid,System.Guid,System.String@,System.String@,System.Nullable{System.Int32}@,System.Nullable{System.Boolean}@,System.Nullable{System.Guid}@,System.Nullable{System.Decimal}@,System.Nullable{System.DateTime}@)">
+            <summary>
+            Load setting values by identifiers of user and module.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <returns>Returns <c>true</c> if data successfully loaded and <c>flase</c> if loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: user identifier AND module identifier AND setting identifier.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetCommonSettings(System.String,System.String@,System.String@,System.Nullable{System.Int32}@,System.Nullable{System.Boolean}@,System.Nullable{System.Guid}@,System.Nullable{System.Decimal}@,System.Nullable{System.DateTime}@)">
+            <summary>
+            Load common setting values by name.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <returns>Returns <c>true</c> if data successfully loaded and <c>flase</c> if loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).
+            </returns>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetCommonSettings(System.Guid,System.String@,System.String@,System.Nullable{System.Int32}@,System.Nullable{System.Boolean}@,System.Nullable{System.Guid}@,System.Nullable{System.Decimal}@,System.Nullable{System.DateTime}@)">
+            <summary>
+            Load common setting values by identifier.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <returns>Returns <c>true</c> if data successfully loaded and <c>flase</c> if loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetAllSettingsByUser(System.String,System.Nullable{System.Guid})">
+            <summary>
+            Get all settings by user name or identifier.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <returns>List of user settings.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>Loading logic: user name OR identifier.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetAllSettingsByUser(System.String)">
+            <summary>
+            Get all settings by user name.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <returns>List of user settings.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetAllSettingsByUser(System.Guid)">
+            <summary>
+            Get all settings by user identifier.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <returns>List of user settings.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetAllSettingsNames(System.String,System.String)">
+            <summary>
+            Get all names of settings by module name and identifier.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <returns>List of all names of settings.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>Loading logic: user name AND module name.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetAllCommonSettings">
+            <summary>
+            Get all common settings.
+            </summary>
+            <returns>List of all common settings.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetAllSettingsByModule(System.String,System.Nullable{System.Guid})">
+            <summary>
+            Get all settings by module name or identifier.
+            </summary>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <returns>List of module settings.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+            <remarks>Loading logic: module name OR identifier.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetAllSettingsByModule(System.String)">
+            <summary>
+            Get all settings by module name.
+            </summary>
+            <param name="moduleName">Name of the module.</param>
+            <returns>List of module settings.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetAllSettingsByModule(System.Guid)">
+            <summary>
+            Get all settings by module identifier.
+            </summary>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <returns>List of module settings.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetStrSetting(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Get value of <see cref="T:System.String" />-type setting by names and identifiers of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: (user name OR identifier) AND (module name OR identifier) AND (setting name OR identifier).</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetStrSetting(System.String,System.String,System.String)">
+            <summary>
+            Get value of <see cref="T:System.String" />-type setting by names of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: user name AND module name AND setting name.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetStrSetting(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Get value of <see cref="T:System.String" />-type setting.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: user identifier AND identifier name AND setting identifier.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetCommonStrSetting(System.String)">
+            <summary>
+            Get value of common <see cref="T:System.String" />-type setting by name.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetCommonStrSetting(System.Guid)">
+            <summary>
+            Get value of common <see cref="T:System.String" />-type setting by identifier.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetTxtSetting(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Get value of <see cref="T:System.Int32" />-type setting by names and identifiers of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: (user name OR identifier) AND (module name OR identifier) AND (setting name OR identifier).</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetTxtSetting(System.String,System.String,System.String)">
+            <summary>
+            Get value of <see cref="T:System.Int32" />-type setting by names of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: user name AND module name AND setting name.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetTxtSetting(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Get value of <see cref="T:System.Int32" />-type setting.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            In case of multiple results only first record will be loaded. Others will be deleted.
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetCommonTxtSetting(System.String)">
+            <summary>
+            Get value of common <see cref="T:System.Int32" />-type setting by name.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: user identifier AND identifier name AND setting identifier.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetCommonTxtSetting(System.Guid)">
+            <summary>
+            Get value of common <see cref="T:System.Int32" />-type setting by identifier.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetIntSetting(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Get value of <see cref="T:System.Int32" />-type setting by names and identifiers of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: (user name OR identifier) AND (module name OR identifier) AND (setting name OR identifier).</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetIntSetting(System.String,System.String,System.String)">
+            <summary>
+            Get value of <see cref="T:System.Int32" />-type setting by names of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: user name AND module name AND setting name.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetIntSetting(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Get value of <see cref="T:System.Int32" />-type setting by identifiers of user and module.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: user identifier AND identifier name AND setting identifier.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetCommonIntSetting(System.String)">
+            <summary>
+            Get value of common <see cref="T:System.Int32" />-type setting by name.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetCommonIntSetting(System.Guid)">
+            <summary>
+            Get value of common <see cref="T:System.Int32" />-type setting by identifier.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetBoolSetting(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Get value of <see cref="T:System.Boolean" />-type setting by names and identifiers of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: (user name OR identifier) AND (module name OR identifier) AND (setting name OR identifier).</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetBoolSetting(System.String,System.String,System.String)">
+            <summary>
+            Get value of <see cref="T:System.Boolean" />-type setting by names of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: user name AND module name AND setting name.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetBoolSetting(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Get value of <see cref="T:System.Boolean" />-type setting by identifiers of user and module.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: user identifier AND identifier name AND setting identifier.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetCommonBoolSetting(System.String)">
+            <summary>
+            Get value of common <see cref="T:System.Boolean" />-type setting by name.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetCommonBoolSetting(System.Guid)">
+            <summary>
+            Get value of common <see cref="T:System.Boolean" />-type setting by identifier.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetGuidSetting(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Get value of <see cref="T:System.String" />-type setting by names and identifiers of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: (user name OR identifier) AND (module name OR identifier) AND (setting name OR identifier).</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetGuidSetting(System.String,System.String,System.String)">
+            <summary>
+            Get value of <see cref="T:System.String" />-type setting by names of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: user name AND module name AND setting name.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetGuidSetting(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Get value of <see cref="T:System.String" />-type setting by identifiers of user and module.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: user identifier AND identifier name AND setting identifier.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetCommonGuidSetting(System.String)">
+            <summary>
+            Get value of common <see cref="T:System.String" />-type setting by name.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetDecimalSetting(System.String,System.String,System.String)">
+            <summary>
+            Get value of <see cref="T:System.Decimal" />-type setting by names of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: user name AND module name AND setting name.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetCommonGuidSetting(System.Guid)">
+            <summary>
+            Get value of common <see cref="T:System.String" />-type setting by identifier.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetDecimalSetting(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Get value of <see cref="T:System.Decimal" />-type setting by names and identifiers of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: (user name OR identifier) AND (module name OR identifier) AND (setting name OR identifier).</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetDecimalSetting(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Get value of <see cref="T:System.Decimal" />-type setting by identifiers of user and module.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: user identifier AND identifier name AND setting identifier.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetCommonDecimalSetting(System.String)">
+            <summary>
+            Get value of common <see cref="T:System.Decimal" />-type setting by name.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetCommonDecimalSetting(System.Guid)">
+            <summary>
+            Get value of common <see cref="T:System.Decimal" />-type setting by identifier.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetDateTimeSetting(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Get value of <see cref="T:System.DateTime" />-type setting by names and identifiers of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: (user name OR identifier) AND (module name OR identifier) AND (setting name OR identifier).</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetDateTimeSetting(System.String,System.String,System.String)">
+            <summary>
+            Get value of <see cref="T:System.DateTime" />-type setting by names of user and module.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: user name AND module name AND setting name.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetDateTimeSetting(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Get value of <see cref="T:System.DateTime" />-type setting by identifiers of user and module.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>
+            <para>Loading logic: user identifier AND identifier name AND setting identifier.</para>
+            <para>In case of multiple results only first record will be loaded. Others will be deleted.</para>
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetCommonDateTimeSetting(System.String)">
+            <summary>
+            Get value of common <see cref="T:System.DateTime" />-type setting by name.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetCommonDateTimeSetting(System.Guid)">
+            <summary>
+            Get value of common <see cref="T:System.DateTime" />-type setting by identifier.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Value of setting or <c>null</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <remarks>In case of multiple results only first record will be loaded. Others will be deleted.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetSettings(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Guid},System.Nullable{System.Decimal},System.Nullable{System.DateTime})">
+            <summary>
+            Set setting value using identifiers and names.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetSettings(System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Guid},System.Nullable{System.Decimal},System.Nullable{System.DateTime})">
+            <summary>
+            Set setting value using names.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetStrSetting(System.String,System.String,System.String,System.String)">
+            <summary>
+            Set <see cref="T:System.String" />-type setting.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetStrSetting(System.Guid,System.Guid,System.Guid,System.String)">
+            <summary>
+            Set <see cref="T:System.String" />-type setting.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetCommonStrSetting(System.String,System.String)">
+            <summary>
+            Set common <see cref="T:System.String" />-type setting.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetCommonStrSetting(System.Guid,System.String)">
+            <summary>
+            Set common <see cref="T:System.String" />-type setting.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetTxtSetting(System.String,System.String,System.String,System.String)">
+            <summary>
+            Set <see cref="T:System.String" />-type setting with unbounded length.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetTxtSetting(System.Guid,System.Guid,System.Guid,System.String)">
+            <summary>
+            Set <see cref="T:System.String" />-type setting with unbounded length.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetCommonTxtSetting(System.String,System.String)">
+            <summary>
+            Set common <see cref="T:System.String" />-type setting with unbounded length.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetCommonTxtSetting(System.Guid,System.String)">
+            <summary>
+            Set common <see cref="T:System.String" />-type setting with unbounded length.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetIntSetting(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Set <see cref="T:System.Int32" />-type setting.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetIntSetting(System.Guid,System.Guid,System.Guid,System.Int32)">
+            <summary>
+            Set <see cref="T:System.Int32" />-type setting.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetCommonIntSetting(System.String,System.Int32)">
+            <summary>
+            Set common <see cref="T:System.Int32" />-type setting.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetCommonIntSetting(System.Guid,System.Int32)">
+            <summary>
+            Set common <see cref="T:System.Int32" />-type setting.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetBoolSetting(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Set <see cref="T:System.Boolean" />-type setting.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetBoolSetting(System.Guid,System.Guid,System.Guid,System.Boolean)">
+            <summary>
+            Set <see cref="T:System.Boolean" />-type setting.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetCommonBoolSetting(System.String,System.Boolean)">
+            <summary>
+            Set common <see cref="T:System.Boolean" />-type setting.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetCommonBoolSetting(System.Guid,System.Boolean)">
+            <summary>
+            Set common <see cref="T:System.Boolean" />-type setting.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetGuidSetting(System.String,System.String,System.String,System.Guid)">
+            <summary>
+            Set <see cref="T:System.String" />-type setting.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetGuidSetting(System.Guid,System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Set <see cref="T:System.String" />-type setting.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetCommonGuidSetting(System.String,System.Guid)">
+            <summary>
+            Set common <see cref="T:System.String" />-type setting.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetCommonGuidSetting(System.Guid,System.Guid)">
+            <summary>
+            Set common <see cref="T:System.String" />-type setting.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetDecimalSetting(System.String,System.String,System.String,System.Decimal)">
+            <summary>
+            Set <see cref="T:System.Decimal" />-type setting.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetDecimalSetting(System.Guid,System.Guid,System.Guid,System.Decimal)">
+            <summary>
+            Set <see cref="T:System.Decimal" />-type setting.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetCommonDecimalSetting(System.String,System.Decimal)">
+            <summary>
+            Set common <see cref="T:System.Decimal" />-type setting.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetCommonDecimalSetting(System.Guid,System.Decimal)">
+            <summary>
+            Set common <see cref="T:System.Decimal" />-type setting.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetDateTimeSetting(System.String,System.String,System.String,System.DateTime)">
+            <summary>
+            Set <see cref="T:System.DateTime" />-type setting.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetDateTimeSetting(System.Guid,System.Guid,System.Guid,System.DateTime)">
+            <summary>
+            Set <see cref="T:System.DateTime" />-type setting.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetCommonDateTimeSetting(System.String,System.DateTime)">
+            <summary>
+            Set common <see cref="T:System.DateTime" />-type setting.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetCommonDateTimeSetting(System.Guid,System.DateTime)">
+            <summary>
+            Set common <see cref="T:System.DateTime" />-type setting.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.SetSettings(System.Guid,System.Guid,System.Guid,System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Guid},System.Nullable{System.Decimal},System.Nullable{System.DateTime})">
+            <summary>
+            Set setting value using identifiers.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="stringValue">Value of <see cref="T:System.String" />-type setting with bounded length.</param>
+            <param name="textValue">Value of <see cref="T:System.String" />-type setting with unbounded length.</param>
+            <param name="intValue">Value of <see cref="T:System.Int32" />-type setting.</param>
+            <param name="boolValue">Value of <see cref="T:System.Boolean" />-type setting.</param>
+            <param name="guidValue">Value of <see cref="T:System.Guid" />-type setting.</param>
+            <param name="decimalValue">Value of <see cref="T:System.Decimal" />-type setting.</param>
+            <param name="dateTimeValue">Value of <see cref="T:System.DateTime" />-type setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.DeleteSettingsByUser(System.String)">
+            <summary>
+            Delete all settings by user name.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.DeleteSettingsByUser(System.Guid)">
+            <summary>
+            Delete all settings by user identifier.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.DeleteSettingsByUser(System.String,System.Nullable{System.Guid})">
+            <summary>
+            Delete all settings by user name and identifier.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+            <remarks>Deletes data using user name OR identifier.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.DeleteSettingsByModule(System.String,System.Nullable{System.Guid})">
+            <summary>
+            Delete all settings by module name or identifier.
+            </summary>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+            <remarks>Deletes data using module name OR identifier.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.DeleteSettings(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Delete all settings by module and setting name or identifier.
+            </summary>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.DeleteSettings">
+            <summary>
+            Delete all settings.
+            </summary>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.DeleteSettings(System.String,System.String,System.String)">
+            <summary>
+            Delete setting by names.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.DeleteSettings(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Delete setting by identifiers.
+            </summary>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.DeleteCommonSettings(System.String)">
+            <summary>
+            Delete common setting by name.
+            </summary>
+            <param name="settingName">Name of the setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.DeleteAllCommonSettings">
+            <summary>
+            Delete all common settings.
+            </summary>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.DeleteCommonSettings(System.Guid)">
+            <summary>
+            Delete common setting by identifier.
+            </summary>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.DeleteSettings(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Delete settings.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Returns <c>true</c> on success.</returns>
+            <remarks>Deletes all settings usin OR logic for non-null arguments.</remarks>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.BuildNameOrGuidFunction(System.String,System.String,System.Nullable{System.Guid},System.String,ICSSoft.STORMNET.View)">
+            <summary>
+            Gets the limit function for loading setting by name or by identifer of some field.
+            Adds properties in specified view.
+            Uses logic defined in <see cref="T:ICSSoft.Services.IUserSettingsService"/>: load by name OR identifier.
+            </summary>
+            <param name="nameValue">Value of the name property.</param>
+            <param name="nameProperty">Name of the name property.</param>
+            <param name="guidValue">Value of the identifier property.</param>
+            <param name="guidProperty">Name of the identifier property.</param>
+            <param name="view">The view where is need to add properties for loading data.</param>
+            <returns>Limit function for loading setting.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetLimitFunctionBySettIDs(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Gets the limit function for loading settings.
+            Loading logic: (userName OR userGuid) AND (moduleName OR moduleGuid) AND (settingName OR settingGuid).
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>LimitFunction function for loading settings.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetLimitFunctionAndViewBySomeIDs(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},ICSSoft.STORMNET.View@)">
+            <summary>
+            Gets the limit function loading settings and builds appropriate view.
+            Loading logic: (userName OR userGuid) AND (moduleName OR moduleGuid) AND (settingName OR settingGuid).
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="view">The view.</param>
+            <returns>LimitFunction function for loading settings.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.CheckSettingIdentityIsNull(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid})">
+            <summary>
+            Checks parameters for loading or saving setting.
+            We need a possibility to correctly load (or save) data.
+             </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <returns>Returns <c>true</c> if we can correctly load or save settings by specified parameters.</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetObjects(ICSSoft.STORMNET.View,ICSSoft.STORMNET.FunctionalLanguage.Function,ICSSoft.STORMNET.Business.IDataService,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Loads settings objects.
+            </summary>
+            <param name="view">View for loading settings.</param>
+            <param name="lf">Limit function for loading settings.</param>
+            <param name="ds">Data service for loading settings.</param>
+            <param name="orderByProps">Names of properties for sorting.</param>
+            <returns>Array of loaded data objects with settings (<see cref="T:ICSSoft.Services.UserSetting"/> instances).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.DeleteObjectsFrom1ToN(ICSSoft.STORMNET.Business.IDataService,ICSSoft.STORMNET.DataObject[])">
+            <summary>
+            Deletes all objects except the first.
+            </summary>
+            <param name="ds">Data service for deleting objects.</param>
+            <param name="dObjs">Objects for deleting.</param>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetObectsWithPropsInVeiw(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Loads settings objects only with specified properties.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">Identifier of the user.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">Identifier of the module.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">Identifier of the setting.</param>
+            <param name="propsNames">Names of properties for loading.</param>
+            <param name="orderByProps">Names of properties for sorting.</param>
+            <returns>Array of loaded data objects with settings (<see cref="T:ICSSoft.Services.UserSetting"/> instances).</returns>
+        </member>
+        <member name="M:ICSSoft.Services.UserSettingsService.GetSettings``1(System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Nullable{System.Guid},System.String,System.Func{ICSSoft.Services.UserSetting,``0})">
+            <summary>
+            Gets single value of specified setting from data service.
+            </summary>
+            <typeparam name="T">The type of setting.</typeparam>
+            <param name="userName">Name of the user.</param>
+            <param name="userGuid">The user unique identifier.</param>
+            <param name="moduleName">Name of the module.</param>
+            <param name="moduleGuid">The module unique identifier.</param>
+            <param name="settingName">Name of the setting.</param>
+            <param name="settingGuid">The setting unique identifier.</param>
+            <param name="prop">The name property for loading.</param>
+            <param name="loader">Delegate for loading value of setting from loaded <see cref="T:ICSSoft.Services.UserSetting"/> instance.</param>
+            <returns>Value of setting or <c>default(T)</c> if it's not found or loading is disabled (<see cref="P:ICSSoft.Services.UserSettingsService.UseSettings" /> is <c>false</c>).</returns>
+            <exception cref="T:System.ArgumentException">Thrown when setting value cannot be loaded using specified arguments.</exception>
+        </member>
+    </members>
+</doc>
