@@ -13,6 +13,7 @@
     <description>Flexberry UserSettingsService package.</description>
     <releaseNotes>
       1) Add FlexberryAdvLimit class.
+      2) [Performance] Call `UpdateObjects` on deleting only when necessary.
     </releaseNotes>
     <copyright>Copyright New Platform Ltd. 2019</copyright>
     <tags>Flexberry Settings</tags>
