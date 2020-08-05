@@ -1,21 +1,51 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>Flexberry UserSettingsService package.</Description>
+    <Title>Flexberry UserSettingsService</Title>
+    <Authors>New Platform Ltd.</Authors>
+    <Copyright>Copyright 2020 © New Platform Ltd.</Copyright>
+    <Company>New Platform Ltd.</Company>
+    <PackageTags>Settings Flexberry</PackageTags>
+    <VersionPrefix>4.0.0-alpha03</VersionPrefix>
+    <Product>NewPlatform.Flexberry.UserSettingsService</Product>
+    <PackageId>NewPlatform.Flexberry.UserSettingsService</PackageId>
+    <PackageProjectUrl>https://flexberry.net</PackageProjectUrl>
+    <PackageIconUrl>https://flexberry.net/img/logo-color.png</PackageIconUrl>
+    <PackageLicenseUrl>https://flexberry.net</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>git://github.com/Flexberry/NewPlatform.Flexberry.UserSettingsService</RepositoryUrl>
+    <PackageReleaseNotes>See https://github.com/Flexberry/NewPlatform.Flexberry.UserSettingsService/blob/master/CHANGELOG.md </PackageReleaseNotes>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
+    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
+    <Configurations>Debug;Release</Configurations>
+    <LangVersion>7.1</LangVersion>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>UserSettingsService.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\NewPlatform.Flexberry.UserSettingsService.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>..\Flexberry.ruleset</CodeAnalysisRuleSet>
+</PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>NewPlatform.Flexberry.UserSettingsService.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>NewPlatform.Flexberry.UserSettingsService.xml</DocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NewPlatform.Flexberry.ORM.Abstractions" Version="6.0.0-alpha04" />
+    <PackageReference Include="NewPlatform.Flexberry.ORM" Version="6.0.0-beta03" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="System.DirectoryServices" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <PackageReference Include="System.DirectoryServices" Version="4.7.0" />
+  </ItemGroup>
+
 
 </Project>

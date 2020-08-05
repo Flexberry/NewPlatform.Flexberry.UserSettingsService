@@ -3,12 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet Package Properties", "NuGet Package Properties", "{75F93581-D0A2-4C97-8651-F2E207B88214}"
-	ProjectSection(SolutionItems) = preProject
-		NewPlatform.Flexberry.UserSettingsService.nuspec = NewPlatform.Flexberry.UserSettingsService.nuspec
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewPlatform.Flexberry.UserSettingsService", "NewPlatform.Flexberry.UserSettingsService\NewPlatform.Flexberry.UserSettingsService.csproj", "{F95986A7-AA9B-4D92-AE5E-E89FA6F74A02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewPlatform.Flexberry.UserSettingsService", "NewPlatform.Flexberry.UserSettingsService\NewPlatform.Flexberry.UserSettingsService.csproj", "{F95986A7-AA9B-4D92-AE5E-E89FA6F74A02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,7 +26,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35
 		SolutionGuid = {B780A54D-139D-4D67-BCE8-5E5375FAD697}
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35
 	EndGlobalSection
 EndGlobal
