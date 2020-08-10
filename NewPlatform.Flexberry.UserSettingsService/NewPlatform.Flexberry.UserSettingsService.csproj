@@ -7,7 +7,7 @@
     <Copyright>Copyright 2020 © New Platform Ltd.</Copyright>
     <Company>New Platform Ltd.</Company>
     <PackageTags>Settings Flexberry</PackageTags>
-    <VersionPrefix>4.0.0-alpha03</VersionPrefix>
+    <VersionPrefix>4.0.0-beta01</VersionPrefix>
     <Product>NewPlatform.Flexberry.UserSettingsService</Product>
     <PackageId>NewPlatform.Flexberry.UserSettingsService</PackageId>
     <PackageProjectUrl>https://flexberry.net</PackageProjectUrl>
@@ -17,14 +17,20 @@
     <RepositoryUrl>git://github.com/Flexberry/NewPlatform.Flexberry.UserSettingsService</RepositoryUrl>
     <PackageReleaseNotes>See https://github.com/Flexberry/NewPlatform.Flexberry.UserSettingsService/blob/master/CHANGELOG.md </PackageReleaseNotes>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
 
+  <PropertyGroup>
     <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
     <Configurations>Debug;Release</Configurations>
-    <LangVersion>7.1</LangVersion>
+    <LangVersion>8</LangVersion>
+    <RootNamespace>ICSSoft.Services</RootNamespace>
+    <AssemblyName>NewPlatform.Flexberry.UserSettingsService</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>UserSettingsService.snk</AssemblyOriginatorKeyFile>
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\NewPlatform.Flexberry.UserSettingsService.xml</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <CodeAnalysisRuleSet>..\Flexberry.ruleset</CodeAnalysisRuleSet>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
 </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -32,7 +38,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NewPlatform.Flexberry.ORM" Version="6.0.0-beta03" />
+    <PackageReference Include="NewPlatform.Flexberry.ORM" Version="6.0.0-beta04" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
