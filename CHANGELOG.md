@@ -16,7 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
-## [4.0.0] - 2021-05-27
+## [4.0.0] - 2021-05-30
 
 ### Added
 - .NET Standard 2.0 implementation. NuGet package contains net45 and netstandard2.0 targets.
