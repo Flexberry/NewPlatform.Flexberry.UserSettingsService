@@ -134,8 +134,9 @@
 
                 _appName = System.Configuration.ConfigurationManager.AppSettings["applicationName"];
                 if (string.IsNullOrEmpty(_appName))
-                    _appName = System.IO.Path.GetFileNameWithoutExtension(System.Windows.Forms.Application.ExecutablePath);
-
+                {
+                    _appName = "Flexberry App";
+                }
                 return _appName;
             }
         }
@@ -1201,12 +1202,7 @@
                 // если все свойства пустые, то удалим настройку из БД (надо написать метод для удаления настроек, который будет просто вызывать этот метод)
                 if (stringValue == null && textValue == null && intValue == null && boolValue == null && guidValue == null && decimalValue == null && dateTimeValue == null)
                 {
-                    if (dObjs.Length > 0)
-                    {
-                        Action<DataObject> actionForDeleting = i => i.SetStatus(ObjectStatus.Deleted);
-                        Array.ForEach(dObjs,actionForDeleting);
-                        ds.UpdateObjects(ref dObjs);
-                    }
+                    DeleteObjects(ds, dObjs);
 
                     retBool = true;
                 }
@@ -1802,10 +1798,7 @@
                 {
                     DataObject[] dObjs = ds.LoadObjects(lcs);
                     empty = dObjs.Length == 0;
-                    foreach (DataObject dObj in dObjs)
-                        dObj.SetStatus(ObjectStatus.Deleted);
-
-                    ds.UpdateObjects(ref dObjs);
+                    DeleteObjects(ds, dObjs);
                 }
                 while (!empty);
 
@@ -1978,10 +1971,23 @@
         private static void DeleteObjectsFrom1ToN(IDataService ds, DataObject[] dObjs)
         {
             DataObject[] objectsForDeleting = dObjs.Skip(1).ToArray();
-            Action<DataObject> actionForDeleting = i => i.SetStatus(ObjectStatus.Deleted);
-            Array.ForEach(objectsForDeleting, actionForDeleting);
+            DeleteObjects(ds, objectsForDeleting);
+        }
 
-            ds.UpdateObjects(ref objectsForDeleting);
+        /// <summary>
+        /// Deletes all objects.
+        /// </summary>
+        /// <param name="ds">Data service for deleting objects.</param>
+        /// <param name="dObjs">Objects for deleting.</param>
+        private static void DeleteObjects(IDataService ds, DataObject[] dObjs)
+        {
+            if (dObjs.Any())
+            {
+                Action<DataObject> actionForDeleting = i => i.SetStatus(ObjectStatus.Deleted);
+                Array.ForEach(dObjs, actionForDeleting);
+
+                ds.UpdateObjects(ref dObjs);
+            }
         }
 
         /// <summary>
