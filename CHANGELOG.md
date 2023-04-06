@@ -7,6 +7,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 ### Changed
+- Updated NewPlatform.Flexberry.ORM.
+- Added to `FlexberryUserSettingBS` constructor with `ICurrentUser` (now it needs resolving by dependency injection system (unity or other)).
 
 ### Deprecated
 

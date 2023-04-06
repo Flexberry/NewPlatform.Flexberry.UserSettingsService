@@ -1,14 +1,32 @@
 ﻿namespace NewPlatform.Flexberry.ORM.ODataService.UserSettingsService
 {
-    using ICSSoft.Services;
+    using System;
+
     using ICSSoft.STORMNET;
     using ICSSoft.STORMNET.Business;
+    using NewPlatform.Flexberry.ORM.CurrentUserService;
 
     /// <summary>
     /// Бизнес-сервер для класса <see cref="FlexberryUserSetting"/>.
     /// </summary>
     public class FlexberryUserSettingBS : BusinessServer
     {
+        private ICurrentUser currentUser;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FlexberryUserSettingBS"/> class.
+        /// </summary>
+        /// <param name="currentUser">Setting of mechanism of getting current user.</param>
+        public FlexberryUserSettingBS(ICurrentUser currentUser)
+        {
+            string errorMessage = "Add resolving of interface ICurrentUser to dependency injection system. \r\n" +
+                                  "If Unity, add to unity config something like: \r\n" +
+                                  "<register type=\"NewPlatform.Flexberry.ORM.CurrentUserService.ICurrentUser, NewPlatform.Flexberry.ORM.CurrentUserService\" mapTo=\"NewPlatform.Flexberry.ORM.CurrentUserService.EmptyCurrentUser, NewPlatform.Flexberry.ORM.CurrentUserService\">\r\n" +
+                                  "  <constructor />\r\n" +
+                                  "</register> ";
+            this.currentUser = currentUser ?? throw new ArgumentNullException(nameof(currentUser), errorMessage);
+        }
+
         /// <summary>
         /// Обработка изменения класса <see cref="FlexberryUserSetting"/>.
         /// В создаваемую запись записывается текущий пользователь.
@@ -20,7 +38,7 @@
         public DataObject[] OnUpdateFlexberryUserSetting(FlexberryUserSetting updatedObject)
         {
             ObjectStatus objectStatus = updatedObject.GetStatus();
-            CurrentUserService.IUser user = CurrentUserService.CurrentUser;
+            ICurrentUser user = currentUser;
 
             string currentUserName = "Anonymous";
             if (user != null)
