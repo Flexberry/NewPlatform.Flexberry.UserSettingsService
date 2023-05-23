@@ -7,7 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 ### Changed
-- Updated NewPlatform.Flexberry.ORM.
+- Updated NewPlatform.Flexberry.ORM up to '7.2.0-alpha02'.
 - Added to `FlexberryUserSettingBS` constructor with `ICurrentUser` (now it needs resolving by dependency injection system (unity or other)).
 
 ### Deprecated
