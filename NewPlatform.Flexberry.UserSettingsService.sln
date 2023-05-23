@@ -1,7 +1,6 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29215.179
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewPlatform.Flexberry.UserSettingsService", "NewPlatform.Flexberry.UserSettingsService\NewPlatform.Flexberry.UserSettingsService.csproj", "{F95986A7-AA9B-4D92-AE5E-E89FA6F74A02}"
 EndProject
