@@ -14,7 +14,7 @@
     /// Implementation of <see cref="IUserSettingsService"/> using data service
     /// for loading and saving settings.
     /// </summary>
-    public class UserSettingsService : DataServiceWrapper, IUserSettingsService
+    public class UserSettingsService : IUserSettingsService
     {
         /// <summary>
         /// Object for syncronizing access to current service instance in <see cref="Current"/>.
@@ -47,55 +47,18 @@
         private string _appName;
 
         /// <summary>
-        /// Current instcance of settings service.
+        /// Data service for quering to database.
         /// </summary>
-        /// <remarks>
-        /// By default, without any configuration (for example, by Unity or other IoC containers) that is usually made
-        /// on start of the application, instance of <see cref="UserSettingsService"/> with data service from
-        /// <see cref="DataServiceProvider"/> will be created.
-        /// Thread safe.
-        /// </remarks>
-        public static IUserSettingsService Current
-        {
-            get
-            {
-                if (_current == null)
-                { 
-                    lock (_sync)
-                    {
-                        if (_current == null)
-                            _current = new UserSettingsService();
-                    }
-                }
-
-                return _current;
-            }
-
-            set
-            {
-                if (value == null)
-                    throw new ArgumentNullException("value");
-
-                lock (_sync)
-                    _current = value;
-            }
-        }
-
-        /// <summary>
-        /// Default constructor.
-        /// Uses data service from <see cref="DataServiceProvider"/>.
-        /// </summary>
-        public UserSettingsService()
-        { 
-        }
+        private readonly IDataService _customDataService;
 
         /// <summary>
         /// Constructor with parameters.
         /// Uses specified data service for loading and saving settings.
         /// </summary>
         /// <param name="dataService">Data service for working with settings.</param>
-        public UserSettingsService(IDataService dataService) : base(dataService)
+        public UserSettingsService(IDataService dataService)
         {
+            _customDataService = dataService ?? throw new ArgumentNullException(nameof(dataService));
         }
 
         #region Configuration
@@ -269,7 +232,7 @@
 
                 if (dObjs.Length > 0)
                 {
-                    DeleteObjectsFrom1ToN(DataService, dObjs);
+                    DeleteObjectsFrom1ToN(_customDataService, dObjs);
 
                     UserSetting userSett = (UserSetting)dObjs[0];
                     stringValue = userSett.StrVal;
@@ -1175,7 +1138,7 @@
             bool retBool;
             try
             {
-                IDataService ds = DataService;
+                IDataService ds = _customDataService;
 
                 var view = new View { DefineClassType = typeof(UserSetting) };
                 view.AddProperty("UserName");
@@ -1788,7 +1751,7 @@
 
             try
             {
-                IDataService ds = DataService;
+                IDataService ds = _customDataService;
                 LoadingCustomizationStruct lcs = LoadingCustomizationStruct.GetSimpleStruct(typeof(UserSetting), v);
                 lcs.InitDataCopy = false; // Обновлять не надо - будет удаление.
                 lcs.LimitFunction = func;
@@ -2017,7 +1980,7 @@
             foreach (string propName in propsNames)
                 view.AddProperty(propName);
 
-            return GetObjects(view, lf, DataService, orderByProps);
+            return GetObjects(view, lf, _customDataService, orderByProps);
         }
 
         /// <summary>
@@ -2057,7 +2020,7 @@
                 DataObject[] dObjs = GetObectsWithPropsInVeiw(userName, userGuid, moduleName, moduleGuid, settingName, settingGuid, new[] { prop });
                 if (dObjs.Length > 0)
                 {
-                    DeleteObjectsFrom1ToN(DataService, dObjs);
+                    DeleteObjectsFrom1ToN(_customDataService, dObjs);
                     UserSetting userSett = (UserSetting)dObjs[0];
                     result = loader(userSett);
                 }
