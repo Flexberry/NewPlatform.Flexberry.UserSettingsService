@@ -20,7 +20,7 @@
         public DataObject[] OnUpdateFlexberryUserSetting(FlexberryUserSetting updatedObject)
         {
             ObjectStatus objectStatus = updatedObject.GetStatus();
-            CurrentUserService.IUser user = CurrentUserService.CurrentUser;
+            // TODO: resolve ICurrentUser
 
             string currentUserName = "Anonymous";
             if (user != null)
