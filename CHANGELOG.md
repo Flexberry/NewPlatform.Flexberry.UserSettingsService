@@ -5,6 +5,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [5.0.0] - 2026-08-11
+
+### Added
 - Added to `FlexberryUserSettingBS` constructor with `ICurrentUser`.
 Now it needs resolving by dependency injection system (unity or other)).
 If Unity it cam be something like:
@@ -15,18 +29,12 @@ If Unity it cam be something like:
 ```
 
 ### Changed
-- Updated `NewPlatform.Flexberry.ORM` up to '8.0.0-beta01'.
-
-### Deprecated
+- Updated `NewPlatform.Flexberry.ORM` up to '8.0.0'.
 
 ### Removed
 - Removed `DataServiceWrapper` as base class for `UserSettingsService` (it is removed from `NewPlatform.Flexberry.ORM`).
 - Removed static field `IUserSettingsService Current` from `UserSettingsService`.
 - Removed constructor of `UserSettingsService` that does not contain parameters.
-
-### Fixed
-
-### Security
 
 ## [4.0.0] - 2021-05-30
 
